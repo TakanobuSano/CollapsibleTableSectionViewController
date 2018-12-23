@@ -77,6 +77,8 @@ open class CollapsibleTableSectionViewController: UIViewController {
         _tableView.dataSource = self
         _tableView.delegate = self
         
+        _tableView.separatorStyle = .none
+        
         // Auto resizing the height of the cell
         _tableView.estimatedRowHeight = 44.0
         _tableView.rowHeight = UITableView.automaticDimension
