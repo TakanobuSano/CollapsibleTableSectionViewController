@@ -18,6 +18,7 @@ import UIKit
     @objc optional func collapsibleTableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
     @objc optional func collapsibleTableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat
     @objc optional func collapsibleTableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?
+    @objc optional func collapsibleTableView(_ tableView: UITableView, colorForHeaderInSection section: Int) -> UIColor
     @objc optional func collapsibleTableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     @objc optional func shouldCollapseByDefault(_ tableView: UITableView) -> Bool
     @objc optional func shouldCollapseOthers(_ tableView: UITableView) -> Bool
@@ -65,6 +66,8 @@ open class CollapsibleTableSectionViewController: UIViewController {
         
         return sectionsNeedReload
     }
+    
+    open func reloadData() { _tableView.reloadData() }
     
     override open func viewDidLoad() {
         super.viewDidLoad()
@@ -124,6 +127,10 @@ extension CollapsibleTableSectionViewController: UITableViewDataSource, UITableV
         
         header.titleLabel.text = title
         header.arrowLabel.text = ">"
+        
+        let color = delegate?.collapsibleTableView?(tableView, colorForHeaderInSection: section) ?? #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        header.contentView.backgroundColor = color
+
         header.setCollapsed(isSectionCollapsed(section))
         
         header.section = section
