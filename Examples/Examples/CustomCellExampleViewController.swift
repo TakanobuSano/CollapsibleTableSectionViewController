@@ -32,8 +32,15 @@ extension CustomCellExampleViewController: CollapsibleTableSectionDelegate {
     }
     
     func collapsibleTableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: CustomCell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? CustomCell ??
-            CustomCell(style: .default, reuseIdentifier: "Cell")
+        
+//        let cell: CustomCell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? CustomCell ??
+//            CustomCell(style: .default, reuseIdentifier: "Cell")
+
+        var cell: CustomTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "CustomCell") as? CustomTableViewCell
+        if cell == nil {
+            tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomCell")
+            cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell") as? CustomTableViewCell
+        }
         
         let item: Item = sections[(indexPath as NSIndexPath).section].items[(indexPath as NSIndexPath).row]
         
@@ -43,6 +50,10 @@ extension CustomCellExampleViewController: CollapsibleTableSectionDelegate {
         return cell
     }
     
+    func collapsibleTableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 1.0
+    }
+
     func collapsibleTableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sections[section].name
     }
