@@ -100,7 +100,7 @@ open class CollapsibleTableSectionViewController: UIViewController {
 extension CollapsibleTableSectionViewController: UITableViewDataSource, UITableViewDelegate {
     
     public func numberOfSections(in tableView: UITableView) -> Int {
-        return delegate?.numberOfSections?(tableView) ?? 1
+        return delegate?.numberOfSections?(tableView) ?? 0
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
