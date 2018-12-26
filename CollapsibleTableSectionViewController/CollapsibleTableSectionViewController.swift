@@ -128,7 +128,7 @@ extension CollapsibleTableSectionViewController: UITableViewDataSource, UITableV
         let title = delegate?.collapsibleTableView?(tableView, titleForHeaderInSection: section) ?? ""
         
         header.titleLabel.text = title
-        header.arrowLabel.text = ">"
+        header.arrowLabel.text = "▷"
         
         let color = delegate?.collapsibleTableView?(tableView, colorForHeaderInSection: section) ?? #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         header.contentView.backgroundColor = color
