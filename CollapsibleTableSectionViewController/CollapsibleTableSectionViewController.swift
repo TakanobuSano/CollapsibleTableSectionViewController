@@ -18,7 +18,9 @@ import UIKit
     @objc optional func collapsibleTableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
     @objc optional func collapsibleTableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat
     @objc optional func collapsibleTableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?
+    @objc optional func collapsibleTableView(_ tableView: UITableView, titleColorForHeaderInSection section: Int) -> UIColor
     @objc optional func collapsibleTableView(_ tableView: UITableView, arrowForHeaderInSection section: Int) -> String?
+    @objc optional func collapsibleTableView(_ tableView: UITableView, arrowColorForHeaderInSection section: Int) -> UIColor
     @objc optional func collapsibleTableView(_ tableView: UITableView, colorForHeaderInSection section: Int) -> UIColor
     @objc optional func collapsibleTableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     @objc optional func shouldCollapseByDefault(_ tableView: UITableView) -> Bool
@@ -128,10 +130,16 @@ extension CollapsibleTableSectionViewController: UITableViewDataSource, UITableV
         
         let title = delegate?.collapsibleTableView?(tableView, titleForHeaderInSection: section) ?? ""
         header.titleLabel.text = title
-        
+
+        let titleColor = delegate?.collapsibleTableView?(tableView, titleColorForHeaderInSection: section) ?? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        header.titleLabel.textColor = titleColor
+
         let arrow = delegate?.collapsibleTableView?(tableView, arrowForHeaderInSection: section) ?? "▷"
         header.arrowLabel.text = arrow
-        
+
+        let arrowColor = delegate?.collapsibleTableView?(tableView, arrowColorForHeaderInSection: section) ?? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        header.arrowLabel.textColor = arrowColor
+
         let color = delegate?.collapsibleTableView?(tableView, colorForHeaderInSection: section) ?? #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         header.contentView.backgroundColor = color
 
