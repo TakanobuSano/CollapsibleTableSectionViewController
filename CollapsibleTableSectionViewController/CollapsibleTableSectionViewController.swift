@@ -19,6 +19,7 @@ import UIKit
     @objc optional func collapsibleTableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat
     @objc optional func collapsibleTableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?
     @objc optional func collapsibleTableView(_ tableView: UITableView, titleColorForHeaderInSection section: Int) -> UIColor
+    @objc optional func collapsibleTableView(_ tableView: UITableView, titleFontForHeaderInSection section: Int) -> UIFont
     @objc optional func collapsibleTableView(_ tableView: UITableView, arrowForHeaderInSection section: Int) -> String?
     @objc optional func collapsibleTableView(_ tableView: UITableView, arrowColorForHeaderInSection section: Int) -> UIColor
     @objc optional func collapsibleTableView(_ tableView: UITableView, colorForHeaderInSection section: Int) -> UIColor
@@ -133,6 +134,9 @@ extension CollapsibleTableSectionViewController: UITableViewDataSource, UITableV
 
         let titleColor = delegate?.collapsibleTableView?(tableView, titleColorForHeaderInSection: section) ?? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         header.titleLabel.textColor = titleColor
+
+        let titleFont = delegate?.collapsibleTableView?(tableView, titleFontForHeaderInSection: section) ?? UIFont.systemFont(ofSize: 17)
+        header.titleLabel.font = titleFont
 
         let arrow = delegate?.collapsibleTableView?(tableView, arrowForHeaderInSection: section) ?? "▷"
         header.arrowLabel.text = arrow
