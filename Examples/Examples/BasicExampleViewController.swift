@@ -46,6 +46,10 @@ extension BasicExampleViewController: CollapsibleTableSectionDelegate {
         return sections[section].name
     }
 
+    func collapsibleTableView(_ tableView: UITableView, arrowForHeaderInSection section: Int) -> String? {
+        return ">"
+    }
+
     func collapsibleTableView(_ tableView: UITableView, colorForHeaderInSection section: Int) -> UIColor {
         return #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
     }
